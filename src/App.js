@@ -16,7 +16,7 @@ class App extends Component {
 
   //Create a function called getRandomQuote that returns a random quote from the array of quotes.
   getRandomQuote = () => {
-    const randomNum = Math.round(Math.random() * (quotes.length));
+    const randomNum = Math.round(Math.random() * (quotes.length - 2));
     return quotes[randomNum];
   }
 
@@ -31,10 +31,21 @@ class App extends Component {
     });
   }
 
+  //Function to generate a random color from R: 0-154, G: 0-154, B: 0-154
+  getRandomColor = upperBound => {
+    const color =`rgb(
+      ${Math.floor(Math.random() * upperBound)}, 
+      ${Math.floor(Math.random() * upperBound)},
+      ${Math.floor(Math.random() * upperBound)}
+    )`;
+    return color;
+  }
+
   render() {
     return (
       <div>
         <QuoteBox 
+        color={this.getRandomColor(256)}
         quote={this.state.quote}
         author={this.state.author}
         handleClick={this.handleClick}
